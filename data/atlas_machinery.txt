@@ -1,0 +1,65 @@
+ENTREPRISE: EURL ATLAS MACHINERY — COMPANY A
+Secteur: Travaux Publics / Engins de Chantier
+Total Employés: 3
+
+EURL ATLAS MACHINERY — EMPLOYÉ 1:
+Nom: AKCHA DJILLALI
+Entreprise: EURL ATLAS MACHINERY
+Role: Conducteur Engin
+Salaire Brut: 130,000 DZD/mois
+Salaire Net: 50,703.25 DZD/mois
+Numéro de Sécurité Sociale (NS): 8500270643 50
+Date de Recrutement: 18/09/2024
+Date de Naissance: 08/01/1985
+
+EURL ATLAS MACHINERY — EMPLOYÉ 2:
+Nom: CHAMMA YOUCEF
+Entreprise: EURL ATLAS MACHINERY
+Role: Conducteur Engin
+Salaire Brut: 130,000 DZD/mois
+Salaire Net: 50,703.25 DZD/mois
+Numéro de Sécurité Sociale (NS): 870415022059
+Date de Recrutement: 25/11/2024
+Date de Naissance: 08/08/1987
+
+EURL ATLAS MACHINERY — EMPLOYÉ 3:
+Nom: ROUAR NABIL
+Entreprise: EURL ATLAS MACHINERY
+Role: Main d'oeuvre
+Salaire Brut: 100,000 DZD/mois
+Salaire Net: 50,703.25 DZD/mois
+Numéro de Sécurité Sociale (NS): 930752010850
+Date de Recrutement: 13/10/2025
+Date de Naissance: 12/07/1993
+
+EURL ATLAS MACHINERY — SALAIRES RÉCAPITULATIF MENSUEL:
+Entreprise: EURL ATLAS MACHINERY
+Total Salaire Brut Mensuel: 360,000 DZD
+Total Salaire Net Mensuel: 152,109.75 DZD
+IRG Mensuel: 24,609 DZD
+
+EURL ATLAS MACHINERY — CHARGES SOCIALES TRIMESTRIELLES:
+Entreprise: EURL ATLAS MACHINERY
+CNAS Trimestriel: 204,750 DZD
+CNAS Mensuel Équivalent: 68,250 DZD
+CACOBATPH Trimestriel: 75,816 DZD
+CACOBATPH Mensuel Équivalent: 25,272 DZD
+
+EURL ATLAS MACHINERY — DÉPENSES OPÉRATIONNELLES MENSUELLES:
+Entreprise: EURL ATLAS MACHINERY
+Gasoil: 56,000 DZD/mois
+Graisse: 15,500 DZD/mois
+Fût Huile Hydraulique: 89,930 DZD/mois
+Huile de Vidange: 10,000 DZD/mois
+Piques Brise Roche: 20,000 DZD/mois
+Pièces de Rechange: 10,650 DZD/mois
+Total Dépenses Opérationnelles Mensuelles: 202,080 DZD
+
+EURL ATLAS MACHINERY — TOTAL CHARGES MENSUELLES:
+Entreprise: EURL ATLAS MACHINERY
+Salaires Bruts: 360,000 DZD
+IRG: 24,609 DZD
+CNAS (équivalent mensuel): 68,250 DZD
+CACOBATPH (équivalent mensuel): 25,272 DZD
+Dépenses Opérationnelles: 202,080 DZD
+TOTAL GÉNÉRAL MENSUEL: 669,561 DZD

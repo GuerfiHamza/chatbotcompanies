@@ -1,0 +1,75 @@
+ENTREPRISE: EURL NOOR LOCATION TP  — COMPANY B
+Secteur: Travaux Publics / Engins de Chantier
+Total Employés: 4
+
+NOOR LOCATION TP EURL — EMPLOYÉ 1:
+Nom: GOURAI MOHAMMED
+Entreprise: NOOR LOCATION TP EURL
+Role: Main d'oeuvre
+Salaire Brut: 100,000 DZD/mois
+Salaire Net: 50,703.25 DZD/mois
+Numéro de Sécurité Sociale (NS): 700738006052
+Date de Recrutement: 14/10/2025
+Date de Naissance: 18/05/1970
+
+NOOR LOCATION TP EURL — EMPLOYÉ 2:
+Nom: KASMI BRAHAM
+Entreprise: NOOR LOCATION TP EURL
+Role: Conducteur Engin
+Salaire Brut: 130,000 DZD/mois
+Salaire Net: 50,703.25 DZD/mois
+Numéro de Sécurité Sociale (NS): 801440004655
+Date de Recrutement: 18/09/2024
+Date de Naissance: 11/08/1980
+
+NOOR LOCATION TP EURL — EMPLOYÉ 3:
+Nom: ROUAR AHMED
+Entreprise: NOOR LOCATION TP EURL
+Role: Main d'oeuvre
+Salaire Brut: 100,000 DZD/mois
+Salaire Net: 50,703.25 DZD/mois
+Numéro de Sécurité Sociale (NS): 940557009829
+Date de Recrutement: 18/09/2024
+Date de Naissance: 22/06/1994
+
+NOOR LOCATION TP EURL — EMPLOYÉ 4:
+Nom: SABAOUI KHALED
+Entreprise: NOOR LOCATION TP EURL
+Role: Responsable
+Salaire Brut: 300,000 DZD/mois
+Salaire Net: 50,703.25 DZD/mois
+Numéro de Sécurité Sociale (NS): 911482006440
+Date de Recrutement: 18/09/2024
+Date de Naissance: 27/06/1991
+
+NOOR LOCATION TP EURL — SALAIRES RÉCAPITULATIF MENSUEL:
+Entreprise: NOOR LOCATION TP EURL
+Total Salaire Brut Mensuel: 530,000 DZD
+Total Salaire Net Mensuel: 202,813 DZD
+IRG Mensuel: 32,810 DZD
+
+NOOR LOCATION TP EURL — CHARGES SOCIALES TRIMESTRIELLES:
+Entreprise: NOOR LOCATION TP EURL
+CNAS Trimestriel: 275,000 DZD
+CNAS Mensuel Équivalent: 91,666.66 DZD
+CACOBATPH Trimestriel: 101,000 DZD
+CACOBATPH Mensuel Équivalent: 33,666.66 DZD
+
+NOOR LOCATION TP EURL — DÉPENSES OPÉRATIONNELLES MENSUELLES:
+Entreprise: NOOR LOCATION TP EURL
+Gasoil: 112,000 DZD/mois
+Graisse: 15,500 DZD/mois
+Fût Huile Hydraulique: 89,930 DZD/mois
+Huile de Vidange: 10,000 DZD/mois
+Piques Brise Roche: 20,000 DZD/mois
+Pièces de Rechange: 10,650 DZD/mois
+Total Dépenses Opérationnelles Mensuelles: 258,080 DZD
+
+NOOR LOCATION TP EURL — TOTAL CHARGES MENSUELLES:
+Entreprise: NOOR LOCATION TP EURL
+Salaires Bruts: 530,000 DZD
+IRG: 32,810 DZD
+CNAS (équivalent mensuel): 91,666.66 DZD
+CACOBATPH (équivalent mensuel): 33,666.66 DZD
+Dépenses Opérationnelles: 258,080 DZD
+TOTAL GÉNÉRAL MENSUEL: 946,223.32 DZD
