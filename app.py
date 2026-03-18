@@ -3,9 +3,7 @@ warnings.filterwarnings("ignore")
 
 import os
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
-if not os.path.exists("faiss_index"):
-    from ingest import ingest
-    ingest()
+
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -38,10 +36,17 @@ html, body, [class*="css"], .stApp {
     color: #1a1a18;
 }
 
-/* Hide sidebar toggle and default streamlit chrome */
+/* Hide ALL Streamlit chrome — works on Cloud too */
 [data-testid="collapsedControl"] { display: none !important; }
-#MainMenu, footer, header { visibility: hidden !important; }
+[data-testid="stToolbar"] { display: none !important; }
+[data-testid="stDecoration"] { display: none !important; }
+[data-testid="stHeader"] { display: none !important; }
+#MainMenu { display: none !important; }
+footer { display: none !important; }
+header { display: none !important; }
 .stDeployButton { display: none !important; }
+.stAppDeployButton { display: none !important; }
+section[data-testid="stSidebar"] { display: none !important; }
 
 /* ── Main container ── */
 .block-container {
@@ -330,17 +335,6 @@ div[data-testid="stButton"]:last-of-type > button:hover {
 </style>
 """, unsafe_allow_html=True)
 
-# ── Header ────────────────────────────────────────────────────────────────────
-st.markdown("""
-<div class="app-header">
-    <div>
-        <p class="app-title">🏗️ Atlas Intelligence</p>
-        <p class="app-subtitle">RH & Gestion d'entreprise</p>
-    </div>
-    <span class="header-badge">Mistral AI</span>
-</div>
-""", unsafe_allow_html=True)
-
 # ── Load chain (cached) ───────────────────────────────────────────────────────
 @st.cache_resource(show_spinner="Chargement de la base de connaissances...")
 def load_chain():
@@ -405,6 +399,17 @@ Réponse :""",
     return chain
 
 chain = load_chain()
+
+# ── Header (rendered after chain loads) ──────────────────────────────────────
+st.markdown("""
+<div class="app-header">
+    <div>
+        <p class="app-title">🏗️ Atlas Intelligence</p>
+        <p class="app-subtitle">RH & Gestion d\'entreprise</p>
+    </div>
+    <span class="header-badge">Mistral AI</span>
+</div>
+""", unsafe_allow_html=True)
 
 # ── Session state ─────────────────────────────────────────────────────────────
 if "messages" not in st.session_state:
