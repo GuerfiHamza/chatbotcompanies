@@ -1,7 +1,7 @@
 import warnings
-warnings.filterwarnings(“ignore”)
+warnings.filterwarnings("ignore")
 import os
-os.environ[“TOKENIZERS_PARALLELISM”] = “false”
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -15,14 +15,13 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
 
 st.set_page_config(
-page_title=“Atlas Intelligence”,
-page_icon=“🏗️”,
-layout=“centered”,
-initial_sidebar_state=“collapsed”,
+    page_title="Atlas Intelligence",
+    page_icon="🏗️",
+    layout="centered",
+    initial_sidebar_state="collapsed",
 )
 
-st.markdown(”””
-
+st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Karla:wght@300;400;500&display=swap');
 
@@ -242,50 +241,45 @@ html, body, .stApp {
     width: auto !important;
 }
 </style>
-
-“””, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 # ── Load chain ────────────────────────────────────────────────────────────────
-
-@st.cache_resource(show_spinner=“⏳ Chargement…”)
+@st.cache_resource(show_spinner="⏳ Chargement...")
 def load_chain():
-MISTRAL_API_KEY = os.environ.get(“MISTRAL_API_KEY”, “”)
-if not MISTRAL_API_KEY:
-try:
-MISTRAL_API_KEY = st.secrets[“MISTRAL_API_KEY”]
-except (FileNotFoundError, KeyError):
-st.error(“⚠️ Clé API Mistral introuvable.”)
-st.stop()
+    MISTRAL_API_KEY = os.environ.get("MISTRAL_API_KEY", "")
+    if not MISTRAL_API_KEY:
+        try:
+            MISTRAL_API_KEY = st.secrets["MISTRAL_API_KEY"]
+        except (FileNotFoundError, KeyError):
+            st.error("⚠️ Clé API Mistral introuvable.")
+            st.stop()
 
-```
-embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
 
-if not os.path.exists("faiss_index"):
-    st.error("⚠️ Index FAISS introuvable. Lancez `python ingest.py` d'abord.")
-    st.stop()
+    if not os.path.exists("faiss_index"):
+        st.error("⚠️ Index FAISS introuvable. Lancez `python ingest.py` d'abord.")
+        st.stop()
 
-db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
-retriever = db.as_retriever(search_kwargs={"k": 15})
+    db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
+    retriever = db.as_retriever(search_kwargs={"k": 15})
 
-llm = ChatMistralAI(
-    mistral_api_key=MISTRAL_API_KEY,
-    model="mistral-medium-latest",
-    temperature=0.1,
-)
+    llm = ChatMistralAI(
+        mistral_api_key=MISTRAL_API_KEY,
+        model="mistral-medium-latest",
+        temperature=0.1,
+    )
 
-prompt = PromptTemplate(
-    template="""Tu es un assistant RH et business intelligent pour des entreprises algériennes de travaux publics.
-```
+    prompt = PromptTemplate(
+        template="""Tu es un assistant RH et business intelligent pour des entreprises algériennes de travaux publics.
 
 RÈGLES IMPORTANTES :
-
 - Utilise UNIQUEMENT les données du contexte ci-dessous.
 - Cherche dans TOUTES les sections du contexte avant de répondre.
 - Si la question porte sur les dépenses (gasoil, graisse, huile, etc.), cherche dans DÉPENSES OPÉRATIONNELLES.
 - Si la question porte sur les charges (CNAS, CACOBATPH, IRG), cherche dans CHARGES SOCIALES et TOTAL CHARGES.
-- Ne dis JAMAIS qu’une information est absente si elle apparaît dans le contexte.
+- Ne dis JAMAIS qu'une information est absente si elle apparaît dans le contexte.
 - Réponds en français, de façon claire et structurée.
-- Pour les listes d’employés ou de dépenses, utilise TOUJOURS un tableau Markdown.
+- Pour les listes d'employés ou de dépenses, utilise TOUJOURS un tableau Markdown.
 - Sois direct et concis.
 
 Contexte :
@@ -293,29 +287,25 @@ Contexte :
 
 Question : {question}
 
-Réponse :”””,
-input_variables=[“context”, “question”],
-)
+Réponse :""",
+        input_variables=["context", "question"],
+    )
 
-```
-def format_docs(docs):
-    return "\n\n---\n\n".join(doc.page_content for doc in docs)
+    def format_docs(docs):
+        return "\n\n---\n\n".join(doc.page_content for doc in docs)
 
-chain = (
-    {"context": retriever | format_docs, "question": RunnablePassthrough()}
-    | prompt
-    | llm
-    | StrOutputParser()
-)
-return chain
-```
+    chain = (
+        {"context": retriever | format_docs, "question": RunnablePassthrough()}
+        | prompt
+        | llm
+        | StrOutputParser()
+    )
+    return chain
 
 chain = load_chain()
 
 # ── Header ────────────────────────────────────────────────────────────────────
-
-st.markdown(”””
-
+st.markdown("""
 <div class="app-header">
     <div>
         <p class="app-title">🏗️ Atlas Intelligence</p>
@@ -326,74 +316,67 @@ st.markdown(”””
 """, unsafe_allow_html=True)
 
 # ── Session state ─────────────────────────────────────────────────────────────
-
-if “messages” not in st.session_state:
-st.session_state.messages = []
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
 # ── Empty state + suggestion chips ───────────────────────────────────────────
-
 if not st.session_state.messages:
-st.markdown(”””
-<div class="empty-state">
-<span class="empty-state-icon">🏗️</span>
-<p class="empty-state-text">Comment puis-je vous aider ?</p>
-<p class="empty-state-sub">Posez une question sur vos employés, salaires ou dépenses</p>
-</div>
-“””, unsafe_allow_html=True)
+    st.markdown("""
+    <div class="empty-state">
+        <span class="empty-state-icon">🏗️</span>
+        <p class="empty-state-text">Comment puis-je vous aider ?</p>
+        <p class="empty-state-sub">Posez une question sur vos employés, salaires ou dépenses</p>
+    </div>
+    """, unsafe_allow_html=True)
 
-```
-suggestions = [
-    "👥 Employés de l'Atlas Machinery",
-    "💰 Total salaires Noor Location",
-    "⛽ Dépenses gasoil des deux companies",
-    "📊 Charges mensuelles totales",
-]
-cols = st.columns(2)
-for i, s in enumerate(suggestions):
-    with cols[i % 2]:
-        if st.button(s, key=f"chip_{i}", use_container_width=True):
-            st.session_state.messages.append({"role": "user", "content": s})
-            with st.spinner("Réflexion..."):
-                answer = chain.invoke(s)
-            st.session_state.messages.append({"role": "assistant", "content": answer})
-            st.rerun()
-```
+    suggestions = [
+        "👥 Employés de l'Atlas Machinery",
+        "💰 Total salaires Noor Location",
+        "⛽ Dépenses gasoil des deux companies",
+        "📊 Charges mensuelles totales",
+    ]
+    cols = st.columns(2)
+    for i, s in enumerate(suggestions):
+        with cols[i % 2]:
+            if st.button(s, key=f"chip_{i}", use_container_width=True):
+                st.session_state.messages.append({"role": "user", "content": s})
+                with st.spinner("Réflexion..."):
+                    answer = chain.invoke(s)
+                st.session_state.messages.append({"role": "assistant", "content": answer})
+                st.rerun()
 
 # ── Chat history ──────────────────────────────────────────────────────────────
-
 if st.session_state.messages:
-st.markdown(’<div class="date-divider">Conversation</div>’, unsafe_allow_html=True)
+    st.markdown('<div class="date-divider">Conversation</div>', unsafe_allow_html=True)
 
 for msg in st.session_state.messages:
-with st.chat_message(msg[“role”], avatar=“🧑” if msg[“role”] == “user” else “🤖”):
-st.markdown(msg[“content”])
+    with st.chat_message(msg["role"], avatar="🧑" if msg["role"] == "user" else "🤖"):
+        st.markdown(msg["content"])
 
 # ── Clear button ──────────────────────────────────────────────────────────────
-
 if st.session_state.messages:
-st.markdown(’<div class="clear-btn">’, unsafe_allow_html=True)
-if st.button(“✕ Effacer la conversation”):
-st.session_state.messages = []
-st.rerun()
-st.markdown(’</div>’, unsafe_allow_html=True)
+    st.markdown('<div class="clear-btn">', unsafe_allow_html=True)
+    if st.button("✕ Effacer la conversation"):
+        st.session_state.messages = []
+        st.rerun()
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # ── Input form ────────────────────────────────────────────────────────────────
-
-st.markdown(”—”)
-with st.form(“chat_form”, clear_on_submit=True):
-col1, col2 = st.columns([6, 1])
-with col1:
-user_input = st.text_input(
-“msg”,
-placeholder=“Ex : Quels sont les employés de l’Atlas Machinery ?”,
-label_visibility=“collapsed”,
-)
-with col2:
-submitted = st.form_submit_button(“Envoyer”)
+st.markdown("---")
+with st.form("chat_form", clear_on_submit=True):
+    col1, col2 = st.columns([6, 1])
+    with col1:
+        user_input = st.text_input(
+            "msg",
+            placeholder="Ex : Quels sont les employés de l'Atlas Machinery ?",
+            label_visibility="collapsed",
+        )
+    with col2:
+        submitted = st.form_submit_button("Envoyer")
 
 if submitted and user_input.strip():
-st.session_state.messages.append({“role”: “user”, “content”: user_input})
-with st.spinner(“Réflexion…”):
-answer = chain.invoke(user_input)
-st.session_state.messages.append({“role”: “assistant”, “content”: answer})
-st.rerun()
+    st.session_state.messages.append({"role": "user", "content": user_input})
+    with st.spinner("Réflexion..."):
+        answer = chain.invoke(user_input)
+    st.session_state.messages.append({"role": "assistant", "content": answer})
+    st.rerun()
